@@ -1,0 +1,24 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net6.0-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <UseWPF>true</UseWPF>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Images\salary.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="C1.WPF.Menu" Version="6.0.20222.302" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Images\salary.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+  </ItemGroup>
+
+</Project>

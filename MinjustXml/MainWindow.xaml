@@ -1,0 +1,60 @@
+﻿<Window x:Class="MinjustXml.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:MinjustXml"
+        mc:Ignorable="d"
+        Title="Госпошлины" Height="450" Width="800" 
+        Icon="Images/salary.png">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="20"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Menu x:Name="menu" Grid.Row="0" Grid.ColumnSpan="2">
+            <MenuItem Header="Файл">
+                <MenuItem Header="Открыть" Click="Open_Click" x:Name="openFile"/>
+                <MenuItem Header="Сохранить"/>
+                <MenuItem Header="Сохранить как"/>
+                <MenuItem Header="Печать"/>
+            </MenuItem>
+            <MenuItem Header="Редактировать"/>
+            <MenuItem Header="Вид"/>
+            <MenuItem Header="Помощь"/>
+        </Menu>
+        <DataGrid Grid.Row="1" AutoGenerateColumns="True" x:Name="peoplesGrid" CanUserAddRows="True">
+            <DataGrid.Columns>
+                <DataGridTextColumn Binding="{Binding fIO_PLATField}" Header="Фамилия плательщика" Width="*"/>
+                <DataGridTextColumn Binding="{Binding dATE_PAY_DOCField}" Header="Адрес плательщика" Width="*"/>
+                <DataGridTextColumn Binding="{Binding aDRESS_PLATField}" Header="Дата платежа плательщика" Width="*"/>
+                <DataGridTextColumn Binding="{Binding nOM_LS_PLATField}" Header="Номер лс плательщика" Width="*"/>
+                <DataGridTextColumn Binding="{Binding pURPOSEField }" Header="Цель платежа" Width="*"/>
+            </DataGrid.Columns>
+        </DataGrid>
+    </Grid>
+<!--     <ListView Grid.Row="1" Grid.ColumnSpan="2">
+                 <TextBlock>
+                Номер
+            </TextBlock>
+            <TextBlock>Дата платежа:</TextBlock> 
+            <TextBlock>Дата поступления в реестр:</TextBlock>
+            <TextBlock>ID операции:</TextBlock>
+            <TextBlock>Оплата:</TextBlock>
+            <TextBlock>ID платежа:</TextBlock>
+            <TextBlock>ИНН платежа:</TextBlock>
+            <TextBlock>ФИО плательщика:</TextBlock>
+            <TextBlock>Адрес плательщика:</TextBlock>
+            <TextBlock>Номер л/с:</TextBlock>
+            <TextBlock>ИНН:</TextBlock>
+            <TextBlock>Наименование организации:</TextBlock>
+            <TextBlock>Цель:</TextBlock>
+            <TextBlock>Платежный статус:</TextBlock>
+            <TextBlock>Номер документа:</TextBlock>
+            <TextBlock>Номер лицевого счета ОФК:</TextBlock> 
+        </ListView>-->
+</Window>
+ 
