@@ -1,8 +1,10 @@
 ﻿using Microsoft.Win32;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices;
+using System.Text.RegularExpressions;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -55,28 +57,12 @@ namespace MinjustXml
                     
                 }
             }
-
+            Regex regex = new Regex(".*ОПЛАТА ЗА:(.*)");
+            foreach (var reg in regs)
+            {
+                reg.PURPOSE = regex.Replace(reg.PURPOSE, "$1");
+            }
             peoplesGrid.ItemsSource = regs;
-            //RegPP reg = new RegPP();
-            //XmlDocument xml = new XmlDocument();
-            //xml.Load(openFileDialog.FileName);
-            //XmlElement element=xml.DocumentElement;
-            //foreach (XmlNode xmlNode in element)
-            //{
-            //    if (xmlNode.Attributes.Count > 0)
-            //    {
-            //        XmlNode attr = xmlNode.Attributes.GetNamedItem("FIO_PLAT");
-            //        if (attr != null)
-            //        {
-            //            peoplesGrid.Items.Add(reg);
-            //        }
-            //    }
-            //}
-        }
-
-        private void peoplesGrid_Loaded(object sender, RoutedEventArgs e)
-        {
-
         }
     }
 }

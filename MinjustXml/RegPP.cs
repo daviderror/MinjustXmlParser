@@ -68,6 +68,11 @@ public partial class RegPP
             this.nOM_LINEField = value;
         }
     }
+    public string GetDate
+    {
+        get { return DATE_PAY_DOC.ToString("hh:mm dd.MM.yyyy"); }
+
+    }
 
     /// <remarks/>
     [System.Xml.Serialization.XmlElementAttribute(DataType = "date")]
@@ -135,17 +140,17 @@ public partial class RegPP
         }
     }
 
-    //public string ID_PLAT
-    //{
-    //    get
-    //    {
-    //        return this.iD_PLATField;
-    //    }
-    //    set
-    //    {
-    //        this.iD_PLATField = value;
-    //    }
-    //}
+    public string ID_PLAT
+    {
+        get
+        {
+            return this.iD_PLATField;
+        }
+        set
+        {
+            this.iD_PLATField = value;
+        }
+    }
 
     /// <remarks/>
     public string INN_PLAT
@@ -251,107 +256,107 @@ public partial class RegPP
     }
 
     /// <remarks/>
-    //public string PAYSTATUS
-    //{
-    //    get
-    //    {
-    //        return this.pAYSTATUSField;
-    //    }
-    //    set
-    //    {
-    //        this.pAYSTATUSField = value;
-    //    }
-    //}
-
-    ///// <remarks/>
-    //public string OSNPLAT
-    //{
-    //    get
-    //    {
-    //        return this.oSNPLATField;
-    //    }
-    //    set
-    //    {
-    //        this.oSNPLATField = value;
-    //    }
-    //}
-
-    ///// <remarks/>
-    //public string NAL_PER
-    //{
-    //    get
-    //    {
-    //        return this.nAL_PERField;
-    //    }
-    //    set
-    //    {
-    //        this.nAL_PERField = value;
-    //    }
-    //}
-
-    ///// <remarks/>
-    //public string NUM_DOK
-    //{
-    //    get
-    //    {
-    //        return this.nUM_DOKField;
-    //    }
-    //    set
-    //    {
-    //        this.nUM_DOKField = value;
-    //    }
-    //}
-
-    ///// <remarks/>
-    //public string DATE_DOK
-    //{
-    //    get
-    //    {
-    //        return this.dATE_DOKField;
-    //    }
-    //    set
-    //    {
-    //        this.dATE_DOKField = value;
-    //    }
-    //}
-
-    ///// <remarks/>
-    //public string TYPE_PL
-    //{
-    //    get
-    //    {
-    //        return this.tYPE_PLField;
-    //    }
-    //    set
-    //    {
-    //        this.tYPE_PLField = value;
-    //    }
-    //}
+    public string PAYSTATUS
+    {
+        get
+        {
+            return this.pAYSTATUSField;
+        }
+        set
+        {
+            this.pAYSTATUSField = value;
+        }
+    }
 
     /// <remarks/>
-    //public string NOM_LS_OFK
-    //{
-    //    get
-    //    {
-    //        return this.nOM_LS_OFKField;
-    //    }
-    //    set
-    //    {
-    //        this.nOM_LS_OFKField = value;
-    //    }
-    //}
+    public string OSNPLAT
+    {
+        get
+        {
+            return this.oSNPLATField;
+        }
+        set
+        {
+            this.oSNPLATField = value;
+        }
+    }
 
-    ///// <remarks/>
-    //public object TRANSAC_INFO
-    //{
-    //    get
-    //    {
-    //        return this.tRANSAC_INFOField;
-    //    }
-    //    set
-    //    {
-    //        this.tRANSAC_INFOField = value;
-    //    }
-    //}
+    /// <remarks/>
+    public string NAL_PER
+    {
+        get
+        {
+            return this.nAL_PERField;
+        }
+        set
+        {
+            this.nAL_PERField = value;
+        }
+    }
+
+    /// <remarks/>
+    public string NUM_DOK
+    {
+        get
+        {
+            return this.nUM_DOKField;
+        }
+        set
+        {
+            this.nUM_DOKField = value;
+        }
+    }
+
+    /// <remarks/>
+    public string DATE_DOK
+    {
+        get
+        {
+            return this.dATE_DOKField;
+        }
+        set
+        {
+            this.dATE_DOKField = value;
+        }
+    }
+
+    /// <remarks/>
+    public string TYPE_PL
+    {
+        get
+        {
+            return this.tYPE_PLField;
+        }
+        set
+        {
+            this.tYPE_PLField = value;
+        }
+    }
+
+    /// <remarks/>
+    public string NOM_LS_OFK
+    {
+        get
+        {
+            return this.nOM_LS_OFKField;
+        }
+        set
+        {
+            this.nOM_LS_OFKField = value;
+        }
+    }
+
+    /// <remarks/>
+    public object TRANSAC_INFO
+    {
+        get
+        {
+            return this.tRANSAC_INFOField;
+        }
+        set
+        {
+            this.tRANSAC_INFOField = value;
+        }
+    }
 }
 

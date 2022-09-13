@@ -26,12 +26,12 @@
             <MenuItem Header="Вид"/>
             <MenuItem Header="Помощь"/>
         </Menu>
-        <DataGrid Grid.Row="1" AutoGenerateColumns="True" x:Name="peoplesGrid" CanUserAddRows="True" Loaded="peoplesGrid_Loaded">
+        <DataGrid Grid.Row="1" AutoGenerateColumns="False" x:Name="peoplesGrid" CanUserAddRows="True">
 
             <DataGrid.Columns>
                 <DataGridTextColumn x:Name="NamePlat" Binding="{Binding FIO_PLAT}" Header="ФИО плательщика" Width="*"/>
                 <DataGridTextColumn Binding="{Binding ADRESS_PLAT}" Header="Адрес плательщика" Width="*"/>
-                <DataGridTextColumn Binding="{Binding DATE_PAY_DOC}" Header="Дата платежа плательщика" Width="*"/>
+                <DataGridTextColumn Binding="{Binding GetDate}" Header="Дата платежа плательщика" Width="*"/>
                 <DataGridTextColumn Binding="{Binding NOM_LS_PLAT}" Header="Номер лс плательщика" Width="*"/>
                 <DataGridTextColumn Binding="{Binding PURPOSE }" Header="Цель платежа" Width="*"/>
             </DataGrid.Columns>
