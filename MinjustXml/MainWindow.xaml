@@ -3,7 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:MinjustXml"
+        xmlns:local="clr-namespace:MinjustXml" xmlns:col="clr-namespace:System.Collections;assembly=System.Collections.NonGeneric"
         mc:Ignorable="d"
         Title="Госпошлины" Height="450" Width="800" 
         Icon="Images/salary.png">
@@ -26,15 +26,16 @@
             <MenuItem Header="Вид"/>
             <MenuItem Header="Помощь"/>
         </Menu>
-        <DataGrid Grid.Row="1" AutoGenerateColumns="True" x:Name="peoplesGrid" CanUserAddRows="True">
+        <DataGrid Grid.Row="1" AutoGenerateColumns="True" x:Name="peoplesGrid" CanUserAddRows="True" Loaded="peoplesGrid_Loaded">
+
             <DataGrid.Columns>
-                <DataGridTextColumn Binding="{Binding fIO_PLATField}" Header="Фамилия плательщика" Width="*"/>
-                <DataGridTextColumn Binding="{Binding dATE_PAY_DOCField}" Header="Адрес плательщика" Width="*"/>
-                <DataGridTextColumn Binding="{Binding aDRESS_PLATField}" Header="Дата платежа плательщика" Width="*"/>
-                <DataGridTextColumn Binding="{Binding nOM_LS_PLATField}" Header="Номер лс плательщика" Width="*"/>
-                <DataGridTextColumn Binding="{Binding pURPOSEField }" Header="Цель платежа" Width="*"/>
+                <DataGridTextColumn x:Name="NamePlat" Binding="{Binding FIO_PLAT}" Header="ФИО плательщика" Width="*"/>
+                <DataGridTextColumn Binding="{Binding ADRESS_PLAT}" Header="Адрес плательщика" Width="*"/>
+                <DataGridTextColumn Binding="{Binding DATE_PAY_DOC}" Header="Дата платежа плательщика" Width="*"/>
+                <DataGridTextColumn Binding="{Binding NOM_LS_PLAT}" Header="Номер лс плательщика" Width="*"/>
+                <DataGridTextColumn Binding="{Binding PURPOSE }" Header="Цель платежа" Width="*"/>
             </DataGrid.Columns>
-        </DataGrid>
+        </DataGrid> 
     </Grid>
 <!--     <ListView Grid.Row="1" Grid.ColumnSpan="2">
                  <TextBlock>

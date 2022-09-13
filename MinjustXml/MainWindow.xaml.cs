@@ -1,9 +1,11 @@
 ﻿using Microsoft.Win32;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Data;
 using System.Xml;
 using System.Xml.Serialization;
 
@@ -32,6 +34,7 @@ namespace MinjustXml
                 text = reader.ReadToEnd();
             }
 
+
             XmlDocument doc = new XmlDocument();
             doc.Load(openFileDialog.FileName);
             //Display all the book titles.
@@ -39,6 +42,7 @@ namespace MinjustXml
             var rootAttribute = new XmlRootAttribute();
             rootAttribute.ElementName = "RegPP";
             XmlSerializer serializer = new XmlSerializer(typeof(RegPP), rootAttribute);
+            List<RegPP> regs = new List<RegPP>();
             for (int i = 1; i < elemList.Count; i++)
             {
                 using (StringReader reader = new StringReader(elemList[i].InnerXml))
@@ -47,9 +51,12 @@ namespace MinjustXml
                     k = k.Insert(k.Length, "</RegPP>");
 
                     var s = (RegPP)serializer.Deserialize(new StringReader(k));
-                    MessageBox.Show(s?.FIO_PLAT);
+                    regs.Add(s);
+                    
                 }
             }
+
+            peoplesGrid.ItemsSource = regs;
             //RegPP reg = new RegPP();
             //XmlDocument xml = new XmlDocument();
             //xml.Load(openFileDialog.FileName);
@@ -66,7 +73,10 @@ namespace MinjustXml
             //    }
             //}
         }
-        
-         
+
+        private void peoplesGrid_Loaded(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
