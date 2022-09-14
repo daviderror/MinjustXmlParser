@@ -10,6 +10,7 @@ using System.Windows.Controls;
 using System.Windows.Data;
 using System.Xml;
 using System.Xml.Serialization;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace MinjustXml
 {
@@ -25,6 +26,7 @@ namespace MinjustXml
         OpenFileDialog openFileDialog = new OpenFileDialog();
         public void Open_Click(object sender, RoutedEventArgs e)
         {
+            openFileDialog.Filter = "XML files (*.XML)|*.XML";
             openFileDialog.ShowDialog();
             OpenXml();
         }
@@ -39,7 +41,6 @@ namespace MinjustXml
 
             XmlDocument doc = new XmlDocument();
             doc.Load(openFileDialog.FileName);
-            //Display all the book titles.
             XmlNodeList elemList = doc.GetElementsByTagName("RegPP");
             var rootAttribute = new XmlRootAttribute();
             rootAttribute.ElementName = "RegPP";
@@ -63,6 +64,10 @@ namespace MinjustXml
                 reg.PURPOSE = regex.Replace(reg.PURPOSE, "$1");
             }
             peoplesGrid.ItemsSource = regs;
+        }
+        private void searchData_MouseDoubleClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            searchData.Clear();
         }
     }
 }

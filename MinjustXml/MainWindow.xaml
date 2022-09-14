@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MinjustXml" xmlns:col="clr-namespace:System.Collections;assembly=System.Collections.NonGeneric"
         mc:Ignorable="d"
-        Title="Госпошлины" Height="450" Width="800" 
+        Title="Госпошлины" Height="450" Width="800" Background="AliceBlue" 
         Icon="Images/salary.png">
     <Grid>
         <Grid.ColumnDefinitions>
@@ -18,13 +18,11 @@
         <Menu x:Name="menu" Grid.Row="0" Grid.ColumnSpan="2">
             <MenuItem Header="Файл">
                 <MenuItem Header="Открыть" Click="Open_Click" x:Name="openFile"/>
-                <MenuItem Header="Сохранить"/>
-                <MenuItem Header="Сохранить как"/>
-                <MenuItem Header="Печать"/>
             </MenuItem>
             <MenuItem Header="Редактировать"/>
             <MenuItem Header="Вид"/>
             <MenuItem Header="Помощь"/>
+            <TextBox x:Name="searchData" Grid.Column="0" Text="Поиск" Width="100" Margin="420 0 0 0" MouseDoubleClick="searchData_MouseDoubleClick"></TextBox>
         </Menu>
         <DataGrid Grid.Row="1" AutoGenerateColumns="False" x:Name="peoplesGrid" CanUserAddRows="True">
 
@@ -37,25 +35,5 @@
             </DataGrid.Columns>
         </DataGrid> 
     </Grid>
-<!--     <ListView Grid.Row="1" Grid.ColumnSpan="2">
-                 <TextBlock>
-                Номер
-            </TextBlock>
-            <TextBlock>Дата платежа:</TextBlock> 
-            <TextBlock>Дата поступления в реестр:</TextBlock>
-            <TextBlock>ID операции:</TextBlock>
-            <TextBlock>Оплата:</TextBlock>
-            <TextBlock>ID платежа:</TextBlock>
-            <TextBlock>ИНН платежа:</TextBlock>
-            <TextBlock>ФИО плательщика:</TextBlock>
-            <TextBlock>Адрес плательщика:</TextBlock>
-            <TextBlock>Номер л/с:</TextBlock>
-            <TextBlock>ИНН:</TextBlock>
-            <TextBlock>Наименование организации:</TextBlock>
-            <TextBlock>Цель:</TextBlock>
-            <TextBlock>Платежный статус:</TextBlock>
-            <TextBlock>Номер документа:</TextBlock>
-            <TextBlock>Номер лицевого счета ОФК:</TextBlock> 
-        </ListView>-->
 </Window>
  
