@@ -3,9 +3,10 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:c="http://materialdesigninxaml.net/winfx/xaml/themes"
         xmlns:local="clr-namespace:MinjustXml" xmlns:col="clr-namespace:System.Collections;assembly=System.Collections.NonGeneric"
         mc:Ignorable="d"
-        Title="Госпошлины" Height="450" Width="800" Background="AliceBlue" 
+        Title="Госпошлины" Height="600" Width="1200" Background="AliceBlue" 
         Icon="Images/salary.png">
     <Grid>
         <Grid.ColumnDefinitions>
@@ -27,10 +28,12 @@
         <DataGrid Grid.Row="1" AutoGenerateColumns="False" x:Name="peoplesGrid" CanUserAddRows="True">
 
             <DataGrid.Columns>
+                <DataGridTextColumn x:Name="IdPlat" Binding="{Binding NOM_LINE}" Header="Номер" Width="100"/>
                 <DataGridTextColumn x:Name="NamePlat" Binding="{Binding FIO_PLAT}" Header="ФИО плательщика" Width="*"/>
                 <DataGridTextColumn Binding="{Binding ADRESS_PLAT}" Header="Адрес плательщика" Width="*"/>
-                <DataGridTextColumn Binding="{Binding GetDate}" Header="Дата платежа плательщика" Width="*"/>
-                <DataGridTextColumn Binding="{Binding NOM_LS_PLAT}" Header="Номер лс плательщика" Width="*"/>
+                <DataGridTextColumn Binding="{Binding GetDate}" Header="Дата платежного поручения" Width="*"/>
+                <DataGridTextColumn Binding="{Binding SUM_REESTR_PP}" Header="Сумма" Width="200"/>
+                <DataGridTextColumn Binding="{Binding ID_OPER}" Header="ID операции" Width="*"/>
                 <DataGridTextColumn Binding="{Binding PURPOSE }" Header="Цель платежа" Width="*"/>
             </DataGrid.Columns>
         </DataGrid> 

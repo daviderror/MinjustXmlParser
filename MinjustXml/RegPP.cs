@@ -10,7 +10,8 @@
 public partial class RegPP
 {
 
-    private string nOM_LINEField;
+    private int nOM_LINEField;
+    private System.DateTime date_PP;
 
     private System.DateTime dATE_PAY_DOCField;
 
@@ -57,7 +58,7 @@ public partial class RegPP
     private object tRANSAC_INFOField;
 
     /// <remarks/>
-    public string NOM_LINE
+    public int NOM_LINE
     {
         get
         {
@@ -70,7 +71,7 @@ public partial class RegPP
     }
     public string GetDate
     {
-        get { return DATE_PAY_DOC.ToString("hh:mm dd.MM.yyyy"); }
+        get { return DATE_REESTR_PP.ToString("hh:mm dd.MM.yyyy"); }
 
     }
 
@@ -87,7 +88,6 @@ public partial class RegPP
             this.dATE_PAY_DOCField = value;
         }
     }
-
     /// <remarks/>
     [System.Xml.Serialization.XmlElementAttribute(DataType = "date")]
     public System.DateTime DATE_REESTR_PP

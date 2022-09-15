@@ -52,16 +52,19 @@ namespace MinjustXml
                 {
                     var k = elemList[i].InnerXml.Insert(0, "<RegPP>");
                     k = k.Insert(k.Length, "</RegPP>");
-
                     var s = (RegPP)serializer.Deserialize(new StringReader(k));
                     regs.Add(s);
-                    
                 }
             }
             Regex regex = new Regex(".*ОПЛАТА ЗА:(.*)");
             foreach (var reg in regs)
             {
                 reg.PURPOSE = regex.Replace(reg.PURPOSE, "$1");
+            }
+            Regex regex1 = new Regex("(.*)00");
+            foreach (var reg in regs)
+            {
+                reg.SUM_REESTR_PP= regex1.Replace(reg.SUM_REESTR_PP, "$1.00");
             }
             peoplesGrid.ItemsSource = regs;
         }

@@ -13,6 +13,7 @@
 
   <ItemGroup>
     <PackageReference Include="C1.WPF.Menu" Version="6.0.20222.302" />
+    <PackageReference Include="MaterialDesignThemes" Version="4.6.0-ci298" />
   </ItemGroup>
 
   <ItemGroup>
