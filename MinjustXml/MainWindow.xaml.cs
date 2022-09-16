@@ -3,11 +3,16 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Net.Mail;
+using System.Net.Mime;
+using System.Reflection;
 using System.Runtime.InteropServices;
+using System.Security.Cryptography.X509Certificates;
 using System.Text.RegularExpressions;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
+using System.Windows.Documents;
 using System.Xml;
 using System.Xml.Serialization;
 using static System.Net.Mime.MediaTypeNames;
@@ -19,16 +24,29 @@ namespace MinjustXml
     /// </summary>
     public partial class MainWindow : Window
     {
+        private System.DateTime date_pp;
         public MainWindow()
         {
             InitializeComponent();
         }
-        OpenFileDialog openFileDialog = new OpenFileDialog();
+        OpenFileDialog openFileDialog = new OpenFileDialog()
+        {
+            Multiselect = true,
+            Title="Выберите файлы "
+        };
+
         public void Open_Click(object sender, RoutedEventArgs e)
         {
             openFileDialog.Filter = "XML files (*.XML)|*.XML";
             openFileDialog.ShowDialog();
             OpenXml();
+            if (openFileDialog.FileName == String.Empty)
+            {
+                return;
+            }
+            foreach (string file in openFileDialog.FileNames)
+            {
+            }
         }
         private void OpenXml()
         {
@@ -37,11 +55,11 @@ namespace MinjustXml
             {
                 text = reader.ReadToEnd();
             }
-
-
             XmlDocument doc = new XmlDocument();
             doc.Load(openFileDialog.FileName);
             XmlNodeList elemList = doc.GetElementsByTagName("RegPP");
+            var zxc = doc.GetElementsByTagName("DATE_PP");
+            date_pp = DateTime.Parse(zxc[0].InnerXml);
             var rootAttribute = new XmlRootAttribute();
             rootAttribute.ElementName = "RegPP";
             XmlSerializer serializer = new XmlSerializer(typeof(RegPP), rootAttribute);
@@ -66,11 +84,8 @@ namespace MinjustXml
             {
                 reg.SUM_REESTR_PP= regex1.Replace(reg.SUM_REESTR_PP, "$1.00");
             }
+            countregs.Text = "Количество человек: " + regs.Count().ToString();
             peoplesGrid.ItemsSource = regs;
-        }
-        private void searchData_MouseDoubleClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
-        {
-            searchData.Clear();
         }
     }
 }
