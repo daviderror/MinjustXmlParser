@@ -25,6 +25,7 @@ namespace MinjustXml
     public partial class MainWindow : Window
     {
         private System.DateTime date_pp;
+        List<RegPP> regs = new List<RegPP>();
         public MainWindow()
         {
             InitializeComponent();
@@ -39,31 +40,33 @@ namespace MinjustXml
         {
             openFileDialog.Filter = "XML files (*.XML)|*.XML";
             openFileDialog.ShowDialog();
-            OpenXml();
+            
             if (openFileDialog.FileName == String.Empty)
             {
                 return;
             }
+            regs = new List<RegPP>();
             foreach (string file in openFileDialog.FileNames)
             {
+                OpenXml(file);
             }
+            peoplesGrid.ItemsSource = regs;
         }
-        private void OpenXml()
+        private void OpenXml( string fileName)
         {
             string text = "";
-            using (StreamReader reader = new StreamReader(openFileDialog.FileName))
+            using (StreamReader reader = new StreamReader(fileName))
             {
                 text = reader.ReadToEnd();
             }
             XmlDocument doc = new XmlDocument();
-            doc.Load(openFileDialog.FileName);
+            doc.Load(fileName);
             XmlNodeList elemList = doc.GetElementsByTagName("RegPP");
             var zxc = doc.GetElementsByTagName("DATE_PP");
             date_pp = DateTime.Parse(zxc[0].InnerXml);
             var rootAttribute = new XmlRootAttribute();
             rootAttribute.ElementName = "RegPP";
             XmlSerializer serializer = new XmlSerializer(typeof(RegPP), rootAttribute);
-            List<RegPP> regs = new List<RegPP>();
             for (int i = 1; i < elemList.Count; i++)
             {
                 using (StringReader reader = new StringReader(elemList[i].InnerXml))
@@ -72,6 +75,7 @@ namespace MinjustXml
                     k = k.Insert(k.Length, "</RegPP>");
                     var s = (RegPP)serializer.Deserialize(new StringReader(k));
                     regs.Add(s);
+
                 }
             }
             Regex regex = new Regex(".*ОПЛАТА ЗА:(.*)");
@@ -85,7 +89,6 @@ namespace MinjustXml
                 reg.SUM_REESTR_PP= regex1.Replace(reg.SUM_REESTR_PP, "$1.00");
             }
             countregs.Text = "Количество человек: " + regs.Count().ToString();
-            peoplesGrid.ItemsSource = regs;
         }
     }
 }
