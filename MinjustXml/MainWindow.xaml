@@ -7,6 +7,7 @@
         xmlns:local="clr-namespace:MinjustXml" xmlns:col="clr-namespace:System.Collections;assembly=System.Collections.NonGeneric"
         mc:Ignorable="d"
         Title="Госпошлины" Height="600" Width="1200" Background="AliceBlue" 
+        WindowStartupLocation="CenterScreen"
         Icon="Images/salary.png">
     <Grid>
         <Grid.ColumnDefinitions>
