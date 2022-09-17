@@ -91,6 +91,7 @@ namespace MinjustXml
             catch (Exception ex)
             {
                 MessageBox.Show("Ошибка чтения XML файла.");
+                return;
             }
             countregs.Text = "Количество человек: " + regs.Count().ToString();
             datepp.Text = "Дата платежного поручения: " + GetPP;
