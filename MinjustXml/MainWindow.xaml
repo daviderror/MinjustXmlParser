@@ -26,7 +26,7 @@
             <MenuItem Header="Вид"/>
             <MenuItem Header="Помощь"/>
         </Menu>
-        <DataGrid Grid.Row="1" AutoGenerateColumns="False" x:Name="peoplesGrid" CanUserAddRows="True">
+        <DataGrid Grid.Row="1" AutoGenerateColumns="False" x:Name="peoplesGrid" CanUserAddRows="False" CanUserResizeRows="False" IsReadOnly="True" >
             <DataGrid.Columns>
                 <DataGridTextColumn x:Name="IdPlat" Binding="{Binding NOM_LINE}" Header="Номер" Width="100"/>
                 <DataGridTextColumn x:Name="NamePlat" Binding="{Binding FIO_PLAT}" Header="ФИО плательщика" Width="*"/>

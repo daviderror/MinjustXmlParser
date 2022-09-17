@@ -96,5 +96,16 @@ namespace MinjustXml
             countregs.Text = "Количество человек: " + regs.Count().ToString();
             datepp.Text = "Дата платежного поручения: " + GetPP;
         }
+
+        private void peoplesGrid_CellEditEnding(object sender, System.Windows.Controls.DataGridCellEditEndingEventArgs e)
+        {
+
+        }
+
+        private void peoplesGrid_CellEditEnding_1(object sender, System.Windows.Controls.DataGridCellEditEndingEventArgs e)
+        {
+            MessageBox.Show("Нельзя редактировать записи!");
+            return;
+        }
     }
 }
