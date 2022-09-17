@@ -37,6 +37,7 @@
             </DataGrid.Columns>
         </DataGrid>
         <TextBlock x:Name="countregs" FontSize="20" FontFamily="Bold" Margin="0 0 10 0"  Grid.Row="2"  Height="25" HorizontalAlignment="Right"/>
+        <TextBlock x:Name="datepp" FontSize="20" FontFamily="Bold" Margin="0 0 10 0"  Grid.Row="2"  Height="25" HorizontalAlignment="Left"/>
     </Grid>
 </Window>
  
