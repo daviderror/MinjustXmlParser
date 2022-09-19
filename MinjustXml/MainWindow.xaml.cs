@@ -4,8 +4,11 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.IO;
 using System.Linq;
+using System.Runtime.Serialization;
 using System.Text.RegularExpressions;
 using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Data;
 using System.Xml;
 using System.Xml.Serialization;
 
@@ -18,6 +21,7 @@ namespace MinjustXml
     {
         private System.DateTime date_pp;
         private string nom_paydoc;
+
         public string GetPP
         {
             get { return date_pp.ToString("dd.MM.yyyy"); }
@@ -49,6 +53,21 @@ namespace MinjustXml
                 OpenXml(file);
             }
             peoplesGrid.ItemsSource = regs;
+            string filterText = findName.Text;
+            ICollectionView viewSource = CollectionViewSource.GetDefaultView(peoplesGrid.ItemsSource);
+            if (filterText == "")
+            {
+                viewSource.Filter = null;
+            }
+            else
+            {
+                viewSource.Filter = o =>
+                {
+                    RegPP p = o as RegPP;
+                    return p.FIO_PLAT.ToString().Contains(filterText);
+                };
+            }
+            peoplesGrid.ItemsSource = viewSource;
         }
         private void OpenXml(string fileName)
         {
@@ -80,7 +99,7 @@ namespace MinjustXml
 
                     }
                 }
-              
+
                 Regex regex = new Regex(".*ОПЛАТА ЗА:(.*)");
                 foreach (var reg in regs)
                 {
@@ -91,7 +110,7 @@ namespace MinjustXml
                 {
                     reg.SUM_REESTR_PP = regex1.Replace(reg.SUM_REESTR_PP, "$1.00");
                 }
-                
+
             }
             catch (Exception ex)
             {
@@ -106,6 +125,6 @@ namespace MinjustXml
             MessageBox.Show("Нельзя редактировать записи!");
             return;
         }
-        
+
     }
 }

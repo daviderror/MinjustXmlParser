@@ -79,7 +79,7 @@ public partial class RegPP
         }
         set
         {
-            this.nOM_PayDoc=value;
+            nOM_PayDoc = value;
         }
     }
     public string GetDate

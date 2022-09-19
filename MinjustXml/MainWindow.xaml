@@ -15,6 +15,7 @@
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="20"/>
+            <RowDefinition Height="20"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="35"/>
         </Grid.RowDefinitions>
@@ -26,10 +27,10 @@
             <MenuItem Header="Вид"/>
             <MenuItem Header="Помощь"></MenuItem>
         </Menu>
-        <DataGrid Grid.Row="1" AutoGenerateColumns="False" x:Name="peoplesGrid" CanUserAddRows="False" CanUserResizeRows="False" IsReadOnly="True" >
+        <DataGrid Grid.Row="2" AutoGenerateColumns="False" x:Name="peoplesGrid" CanUserAddRows="False" CanUserResizeRows="False" IsReadOnly="True" >
             <DataGrid.Columns>
                 <DataGridTextColumn x:Name="IdPlat" Binding="{Binding NOM_LINE}" Header="Номер" Width="100"/>
-                <DataGridTextColumn x:Name="NomPayDoc" Binding="{Binding NOM_PAY_DOC}" Header="Номер платежного поручения" Width="100"/>
+                <DataGridTextColumn x:Name="NomPayDoc" Binding="{Binding NOM_PAY_DOC, Mode=TwoWay}" Header="Номер платежного поручения" Width="100"/>
                 <DataGridTextColumn x:Name="NamePlat" Binding="{Binding FIO_PLAT}" Header="ФИО плательщика" Width="*"/>
                 <DataGridTextColumn Binding="{Binding ADRESS_PLAT}" Header="Адрес плательщика" Width="*"/>
                 <DataGridTextColumn Binding="{Binding GetDate}" Header="Дата поступления в реестр" Width="*"/>
@@ -38,8 +39,10 @@
                 <DataGridTextColumn Binding="{Binding PURPOSE }" Header="Цель платежа" Width="*"/>
             </DataGrid.Columns>
         </DataGrid>
-        <TextBlock x:Name="countregs" FontSize="20" FontFamily="Bold" Margin="0 0 10 0"  Grid.Row="2"  Height="25" HorizontalAlignment="Right"/>
-        <TextBlock x:Name="datepp" FontSize="20" FontFamily="Bold" Margin="0 0 10 0"  Grid.Row="2"  Height="25" HorizontalAlignment="Left"/>
+        <Label Grid.Row="1" HorizontalAlignment="Left" Margin="0 -3 0 0">Поиск: </Label>
+        <TextBox x:Name="findName" Grid.Row="1" Width="200" HorizontalAlignment="Left" Margin="50 0 0 0"></TextBox>
+        <TextBlock x:Name="countregs" FontSize="20" FontFamily="Bold" Margin="0 0 10 0"  Grid.Row="3"  Height="25" HorizontalAlignment="Right"/>
+        <TextBlock x:Name="datepp" FontSize="20" FontFamily="Bold" Margin="0 0 10 0"  Grid.Row="3"  Height="25" HorizontalAlignment="Left"/>
     </Grid>
 </Window>
  

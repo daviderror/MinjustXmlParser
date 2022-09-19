@@ -95,7 +95,7 @@ public partial class Report
     }
 
     /// <remarks/>
-    public uint NOM_PP
+    public uint NOM_PAY_DOC
     {
         get
         {
@@ -103,7 +103,7 @@ public partial class Report
         }
         set
         {
-            this.nOM_PPField = value;
+            nOM_PPField = value;
         }
     }
 
