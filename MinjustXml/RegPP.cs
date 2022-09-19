@@ -1,7 +1,7 @@
 ﻿// Примечание. Для запуска созданного кода может потребоваться NET Framework версии 4.5 или более поздней версии и .NET Core или Standard версии 2.0 или более поздней.
 /// <remarks/>
 
- namespace MinjustXml;
+namespace MinjustXml;
 
 [System.SerializableAttribute()]
 [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -11,6 +11,7 @@ public partial class RegPP
 {
 
     private int nOM_LINEField;
+    private string nOM_PayDoc;
     private System.DateTime date_PP;
 
     private System.DateTime dATE_PAY_DOCField;
@@ -30,7 +31,7 @@ public partial class RegPP
     private string fIO_PLATField;
 
     private string aDRESS_PLATField;
-     
+
     private string nOM_LS_PLATField;
 
     private ulong iNN_RCVField;
@@ -67,6 +68,17 @@ public partial class RegPP
         set
         {
             this.nOM_LINEField = value;
+        }
+    }
+    public string NOM_PAY_DOC
+    {
+        get
+        {
+            return this.nOM_PayDoc;
+        }
+        set
+        {
+            this.nOM_PayDoc=value;
         }
     }
     public string GetDate

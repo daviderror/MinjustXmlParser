@@ -6,7 +6,7 @@
         xmlns:c="http://materialdesigninxaml.net/winfx/xaml/themes"
         xmlns:local="clr-namespace:MinjustXml" xmlns:col="clr-namespace:System.Collections;assembly=System.Collections.NonGeneric"
         mc:Ignorable="d"
-        Title="Госпошлины" Height="600" Width="1200" Background="AliceBlue" 
+        Title="Госпошлины" Height="1000" Width="1800" Background="AliceBlue" 
         WindowStartupLocation="CenterScreen"
         Icon="Images/salary.png">
     <Grid>
@@ -24,11 +24,12 @@
             </MenuItem>
             <MenuItem Header="Редактировать"/>
             <MenuItem Header="Вид"/>
-            <MenuItem Header="Помощь"/>
+            <MenuItem Header="Помощь"></MenuItem>
         </Menu>
         <DataGrid Grid.Row="1" AutoGenerateColumns="False" x:Name="peoplesGrid" CanUserAddRows="False" CanUserResizeRows="False" IsReadOnly="True" >
             <DataGrid.Columns>
                 <DataGridTextColumn x:Name="IdPlat" Binding="{Binding NOM_LINE}" Header="Номер" Width="100"/>
+                <DataGridTextColumn x:Name="NomPayDoc" Binding="{Binding Get_PP}" Header="Дата платежного поручения" Width="100"/>
                 <DataGridTextColumn x:Name="NamePlat" Binding="{Binding FIO_PLAT}" Header="ФИО плательщика" Width="*"/>
                 <DataGridTextColumn Binding="{Binding ADRESS_PLAT}" Header="Адрес плательщика" Width="*"/>
                 <DataGridTextColumn Binding="{Binding GetDate}" Header="Дата поступления в реестр" Width="*"/>

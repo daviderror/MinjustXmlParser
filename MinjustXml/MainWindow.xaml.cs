@@ -19,6 +19,7 @@ namespace MinjustXml
         public string GetPP
         {
             get { return date_pp.ToString("dd.MM.yyyy"); }
+            set { datepp.Text = value; }
 
         }
         List<RegPP> regs = new List<RegPP>();
@@ -31,7 +32,6 @@ namespace MinjustXml
             Multiselect = true,
             Title = "Выберите файлы "
         };
-
         public void Open_Click(object sender, RoutedEventArgs e)
         {
             openFileDialog.Filter = "XML files (*.XML)|*.XML";
@@ -77,6 +77,7 @@ namespace MinjustXml
 
                     }
                 }
+              
                 Regex regex = new Regex(".*ОПЛАТА ЗА:(.*)");
                 foreach (var reg in regs)
                 {
@@ -87,6 +88,7 @@ namespace MinjustXml
                 {
                     reg.SUM_REESTR_PP = regex1.Replace(reg.SUM_REESTR_PP, "$1.00");
                 }
+                
             }
             catch (Exception ex)
             {
@@ -96,16 +98,11 @@ namespace MinjustXml
             countregs.Text = "Количество человек: " + regs.Count().ToString();
             datepp.Text = "Дата платежного поручения: " + GetPP;
         }
-
-        private void peoplesGrid_CellEditEnding(object sender, System.Windows.Controls.DataGridCellEditEndingEventArgs e)
-        {
-
-        }
-
         private void peoplesGrid_CellEditEnding_1(object sender, System.Windows.Controls.DataGridCellEditEndingEventArgs e)
         {
             MessageBox.Show("Нельзя редактировать записи!");
             return;
         }
+        
     }
 }
