@@ -63,6 +63,7 @@ public partial class RegPP
     {
         get
         {
+            
             return this.nOM_LINEField;
         }
         set

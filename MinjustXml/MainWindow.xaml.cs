@@ -1,6 +1,7 @@
 ﻿using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.IO;
 using System.Linq;
 using System.Text.RegularExpressions;
@@ -16,12 +17,13 @@ namespace MinjustXml
     public partial class MainWindow : Window
     {
         private System.DateTime date_pp;
+        private string nom_paydoc;
         public string GetPP
         {
             get { return date_pp.ToString("dd.MM.yyyy"); }
             set { datepp.Text = value; }
-
         }
+
         List<RegPP> regs = new List<RegPP>();
         public MainWindow()
         {
@@ -61,8 +63,9 @@ namespace MinjustXml
                 doc.Load(fileName);
                 XmlNodeList elemList = doc.GetElementsByTagName("RegPP");
                 var zxc = doc.GetElementsByTagName("DATE_PP");
+                var nompp = doc.GetElementsByTagName("NOM_PP");
+                nom_paydoc = String.Format(nompp[0].InnerXml);
                 date_pp = DateTime.Parse(zxc[0].InnerXml);
-
                 var rootAttribute = new XmlRootAttribute();
                 rootAttribute.ElementName = "RegPP";
                 XmlSerializer serializer = new XmlSerializer(typeof(RegPP), rootAttribute);
