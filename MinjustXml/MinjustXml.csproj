@@ -9,6 +9,7 @@
 
   <ItemGroup>
     <None Remove="Images\salary.png" />
+    <None Remove="Images\с.ico" />
   </ItemGroup>
 
   <ItemGroup>
@@ -19,6 +20,9 @@
   <ItemGroup>
     <Resource Include="Images\salary.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\с.ico">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
   </ItemGroup>
 

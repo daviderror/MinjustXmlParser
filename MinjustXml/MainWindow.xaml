@@ -39,10 +39,16 @@
                 <DataGridTextColumn Binding="{Binding PURPOSE }" Header="Цель платежа" Width="*"/>
             </DataGrid.Columns>
         </DataGrid>
-        <Label Grid.Row="1" HorizontalAlignment="Left" Margin="0 -3 0 0">Поиск: </Label>
-        <TextBox x:Name="findName" Grid.Row="1" Width="200" HorizontalAlignment="Left" Margin="50 0 0 0"></TextBox>
+        <TextBox x:Name="findName" Grid.Row="1" Width="200" KeyUp="findName_KeyDown" HorizontalAlignment="Left" Margin="50 0 0 0"></TextBox>
         <TextBlock x:Name="countregs" FontSize="20" FontFamily="Bold" Margin="0 0 10 0"  Grid.Row="3"  Height="25" HorizontalAlignment="Right"/>
         <TextBlock x:Name="datepp" FontSize="20" FontFamily="Bold" Margin="0 0 10 0"  Grid.Row="3"  Height="25" HorizontalAlignment="Left"/>
+        <Button Grid.Row="1" Width="80" HorizontalAlignment="Left" Margin="280 0 0 0 " Click="Button_Click" IsDefault="True">
+            <Button.ContentTemplate >
+                <DataTemplate >
+                    <Image Source="C:\Users\Давид\source\repos\MinjustXml\MinjustXml\Images\с.ico" />
+                </DataTemplate>
+            </Button.ContentTemplate>
+        </Button>
     </Grid>
 </Window>
  

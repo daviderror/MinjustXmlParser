@@ -95,7 +95,7 @@ public partial class Report
     }
 
     /// <remarks/>
-    public uint NOM_PAY_DOC
+    public uint NOM_PP
     {
         get
         {

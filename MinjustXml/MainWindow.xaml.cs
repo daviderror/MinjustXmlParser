@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.DirectoryServices.ActiveDirectory;
 using System.IO;
 using System.Linq;
 using System.Runtime.Serialization;
@@ -9,6 +10,8 @@ using System.Text.RegularExpressions;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
+using System.Windows.Input;
+using System.Windows.Media.Imaging;
 using System.Xml;
 using System.Xml.Serialization;
 
@@ -29,6 +32,7 @@ namespace MinjustXml
         }
 
         List<RegPP> regs = new List<RegPP>();
+
         public MainWindow()
         {
             InitializeComponent();
@@ -69,6 +73,38 @@ namespace MinjustXml
             }
             peoplesGrid.ItemsSource = viewSource;
         }
+        private void OpenReport(string fileName)
+        {
+            try
+            {
+                string text1 = "";
+                using (StreamReader reader = new StreamReader(fileName))
+                {
+                    text1 = reader.ReadToEnd(); 
+                }
+                XmlDocument doc=new XmlDocument();
+                doc.Load(fileName);
+                XmlNodeList elementList = doc.GetElementsByTagName("Report");
+                var qwe = doc.GetElementsByTagName("NOM_PP");
+                var rootAttribute = new XmlRootAttribute();
+                rootAttribute.ElementName = "Report";
+                XmlSerializer serializer = new XmlSerializer(typeof(Report), rootAttribute);
+                for (int i = 1; i < elementList.Count; i++)
+                {
+                    using (StringReader reader = new StringReader(elementList[i].InnerXml))
+                    {
+                        var j = elementList[i].InnerXml.Insert(0, "<Report>");
+                        j = j.Insert(j.Length, "</Report>");
+                        var s = (RegPP)serializer.Deserialize(new StringReader(j));
+                    }
+                }
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show("Ошибка чтения XML файла.");
+                return;
+            }
+        }
         private void OpenXml(string fileName)
         {
             try
@@ -82,8 +118,6 @@ namespace MinjustXml
                 doc.Load(fileName);
                 XmlNodeList elemList = doc.GetElementsByTagName("RegPP");
                 var zxc = doc.GetElementsByTagName("DATE_PP");
-                var nompp = doc.GetElementsByTagName("NOM_PP");
-                nom_paydoc = String.Format(nompp[0].InnerXml);
                 date_pp = DateTime.Parse(zxc[0].InnerXml);
                 var rootAttribute = new XmlRootAttribute();
                 rootAttribute.ElementName = "RegPP";
@@ -126,5 +160,25 @@ namespace MinjustXml
             return;
         }
 
+        private void findName_KeyDown(object sender, System.Windows.Input.KeyEventArgs e)
+        {
+            if (string.IsNullOrEmpty(findName.Text)) {
+                peoplesGrid.ItemsSource = regs;
+                return;
+            }
+            //var s = regs.Where(_ => _.FIO_PLAT.ToLower().Contains(findName.Text.ToLower())).ToList();
+            //peoplesGrid.ItemsSource = s;
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            if (string.IsNullOrEmpty(findName.Text))
+            {
+                peoplesGrid.ItemsSource = regs;
+                return;
+            }
+            var s = regs.Where(_ => _.FIO_PLAT.ToLower().Contains(findName.Text.ToLower())).ToList();
+            peoplesGrid.ItemsSource = s;
+        }
     }
 }
