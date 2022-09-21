@@ -9,6 +9,7 @@
 
   <ItemGroup>
     <None Remove="Images\salary.png" />
+    <None Remove="Images\xmag_search_find_export_locate_5984.png" />
     <None Remove="Images\с.ico" />
   </ItemGroup>
 
@@ -20,6 +21,9 @@
   <ItemGroup>
     <Resource Include="Images\salary.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\xmag_search_find_export_locate_5984.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Images\с.ico">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>

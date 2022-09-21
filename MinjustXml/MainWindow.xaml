@@ -31,7 +31,7 @@
             <DataGrid.Columns>
                 <DataGridTextColumn x:Name="IdPlat" Binding="{Binding NOM_LINE}" Header="Номер" Width="100"/>
                 <DataGridTextColumn x:Name="NomPayDoc" Binding="{Binding NOM_PAY_DOC}" Header="Номер платежного поручения" Width="*"/>
-                <DataGridTextColumn x:Name="DatePPDoc" Binding="{Binding DATE_PAY_DOC}" Header="Дата платежного поручения" Width="*"/>
+                <DataGridTextColumn x:Name="DatePPDoc" Binding="{Binding GetDate}" Header="Дата платежного поручения" Width="*"/>
                 <DataGridTextColumn x:Name="NamePlat" Binding="{Binding FIO_PLAT}" Header="ФИО плательщика" Width="*"/>
                 <DataGridTextColumn Binding="{Binding ADRESS_PLAT}" Header="Адрес плательщика" Width="*"/>
                 <DataGridTextColumn Binding="{Binding GetDate}" Header="Дата поступления в реестр" Width="*"/>
@@ -44,7 +44,7 @@
         <TextBlock x:Name="countregs" FontSize="20" FontFamily="Bold" Margin="0 0 10 0"  Grid.Row="3"  Height="25" HorizontalAlignment="Right"/>
         <Button Grid.Row="1" Width="80" HorizontalAlignment="Left" Margin="280 0 0 0 " Click="Button_Click" IsDefault="True">
             <StackPanel Orientation="Horizontal">
-                <Image Source="C:\Users\Давид\source\repos\MinjustXml\MinjustXml\Images\с.ico" Width="15"></Image>
+                <Image Source="Images\xmag_search_find_export_locate_5984.png"></Image>
                 <TextBlock Text="Поиск" FontSize="12" FontFamily="Times New Roman"></TextBlock>
             </StackPanel>
         </Button>

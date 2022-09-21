@@ -85,10 +85,9 @@ public partial class RegPP
     }
     public string GetDate
     {
-        get { return DATE_REESTR_PP.ToString("hh:mm dd.MM.yyyy"); }
+        get { return DATE_PAY_DOC.ToString("dd.MM.yyyy"); }
 
     }
-
     /// <remarks/>
     [System.Xml.Serialization.XmlElementAttribute(DataType = "date")]
     public System.DateTime DATE_PAY_DOC
