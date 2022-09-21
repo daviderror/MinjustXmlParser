@@ -1,6 +1,7 @@
 ﻿// Примечание. Для запуска созданного кода может потребоваться NET Framework версии 4.5 или более поздней версии и .NET Core или Standard версии 2.0 или более поздней.
-/// <remarks/>
 
+using System;
+/// <remarks/>
 namespace MinjustXml;
 
 [System.SerializableAttribute()]

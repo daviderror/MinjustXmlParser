@@ -2,16 +2,11 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.DirectoryServices.ActiveDirectory;
 using System.IO;
 using System.Linq;
-using System.Runtime.Serialization;
 using System.Text.RegularExpressions;
 using System.Windows;
-using System.Windows.Controls;
 using System.Windows.Data;
-using System.Windows.Input;
-using System.Windows.Media.Imaging;
 using System.Xml;
 using System.Xml.Serialization;
 
@@ -23,8 +18,8 @@ namespace MinjustXml
     public partial class MainWindow : Window
     {
         private System.DateTime date_pp;
-        private string nom_paydoc;
 
+        private string nom_pp;
         public string GetPP
         {
             get { return date_pp.ToString("dd.MM.yyyy"); }
@@ -57,54 +52,8 @@ namespace MinjustXml
                 OpenXml(file);
             }
             peoplesGrid.ItemsSource = regs;
-            string filterText = findName.Text;
-            ICollectionView viewSource = CollectionViewSource.GetDefaultView(peoplesGrid.ItemsSource);
-            if (filterText == "")
-            {
-                viewSource.Filter = null;
-            }
-            else
-            {
-                viewSource.Filter = o =>
-                {
-                    RegPP p = o as RegPP;
-                    return p.FIO_PLAT.ToString().Contains(filterText);
-                };
-            }
-            peoplesGrid.ItemsSource = viewSource;
         }
-        private void OpenReport(string fileName)
-        {
-            try
-            {
-                string text1 = "";
-                using (StreamReader reader = new StreamReader(fileName))
-                {
-                    text1 = reader.ReadToEnd(); 
-                }
-                XmlDocument doc=new XmlDocument();
-                doc.Load(fileName);
-                XmlNodeList elementList = doc.GetElementsByTagName("Report");
-                var qwe = doc.GetElementsByTagName("NOM_PP");
-                var rootAttribute = new XmlRootAttribute();
-                rootAttribute.ElementName = "Report";
-                XmlSerializer serializer = new XmlSerializer(typeof(Report), rootAttribute);
-                for (int i = 1; i < elementList.Count; i++)
-                {
-                    using (StringReader reader = new StringReader(elementList[i].InnerXml))
-                    {
-                        var j = elementList[i].InnerXml.Insert(0, "<Report>");
-                        j = j.Insert(j.Length, "</Report>");
-                        var s = (RegPP)serializer.Deserialize(new StringReader(j));
-                    }
-                }
-            }
-            catch(Exception ex)
-            {
-                MessageBox.Show("Ошибка чтения XML файла.");
-                return;
-            }
-        }
+
         private void OpenXml(string fileName)
         {
             try
@@ -117,8 +66,12 @@ namespace MinjustXml
                 XmlDocument doc = new XmlDocument();
                 doc.Load(fileName);
                 XmlNodeList elemList = doc.GetElementsByTagName("RegPP");
+
                 var zxc = doc.GetElementsByTagName("DATE_PP");
                 date_pp = DateTime.Parse(zxc[0].InnerXml);
+                var qwe = doc.GetElementsByTagName("NOM_PP");
+                nom_pp = qwe[0].InnerXml;
+
                 var rootAttribute = new XmlRootAttribute();
                 rootAttribute.ElementName = "RegPP";
                 XmlSerializer serializer = new XmlSerializer(typeof(RegPP), rootAttribute);
@@ -129,11 +82,14 @@ namespace MinjustXml
                         var k = elemList[i].InnerXml.Insert(0, "<RegPP>");
                         k = k.Insert(k.Length, "</RegPP>");
                         var s = (RegPP)serializer.Deserialize(new StringReader(k));
+                        if (nom_pp != default && date_pp != default)
+                        {
+                            s.NOM_PAY_DOC = nom_pp;
+                            s.DATE_PAY_DOC = date_pp;
+                        }
                         regs.Add(s);
-
                     }
                 }
-
                 Regex regex = new Regex(".*ОПЛАТА ЗА:(.*)");
                 foreach (var reg in regs)
                 {
@@ -143,8 +99,8 @@ namespace MinjustXml
                 foreach (var reg in regs)
                 {
                     reg.SUM_REESTR_PP = regex1.Replace(reg.SUM_REESTR_PP, "$1.00");
+                    reg.SUM_REESTR_PP = reg.SUM_REESTR_PP.Replace("..", ".");
                 }
-
             }
             catch (Exception ex)
             {
@@ -162,12 +118,11 @@ namespace MinjustXml
 
         private void findName_KeyDown(object sender, System.Windows.Input.KeyEventArgs e)
         {
-            if (string.IsNullOrEmpty(findName.Text)) {
+            if (string.IsNullOrEmpty(findName.Text))
+            {
                 peoplesGrid.ItemsSource = regs;
                 return;
             }
-            //var s = regs.Where(_ => _.FIO_PLAT.ToLower().Contains(findName.Text.ToLower())).ToList();
-            //peoplesGrid.ItemsSource = s;
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
