@@ -20,11 +20,6 @@ namespace MinjustXml
         private System.DateTime date_pp;
 
         private string nom_pp;
-        public string GetPP
-        {
-            get { return date_pp.ToString("dd.MM.yyyy"); }
-            set { datepp.Text = value; }
-        }
 
         List<RegPP> regs = new List<RegPP>();
 
@@ -108,7 +103,6 @@ namespace MinjustXml
                 return;
             }
             countregs.Text = "Количество человек: " + regs.Count().ToString();
-            datepp.Text = "Дата платежного поручения: " + GetPP;
         }
         private void peoplesGrid_CellEditEnding_1(object sender, System.Windows.Controls.DataGridCellEditEndingEventArgs e)
         {
@@ -132,7 +126,17 @@ namespace MinjustXml
                 peoplesGrid.ItemsSource = regs;
                 return;
             }
-            var s = regs.Where(_ => _.FIO_PLAT.ToLower().Contains(findName.Text.ToLower())).ToList();
+
+            var s = regs.Where(_ => _.FIO_PLAT!.ToLower().Contains(findName.Text.ToLower()) ||
+                                    _.NOM_LINE!.ToString().Contains(findName.Text.ToLower()) ||
+                                    _.NOM_PAY_DOC!.ToString().Contains(findName.Text.ToLower()) ||
+                                    _.DATE_PAY_DOC!.ToString().Contains(findName.Text.ToLower()) ||
+                                    _.GetDate!.ToString().Contains(findName.Text.ToLower()) ||
+                                    _.ID_OPER!.ToString().Contains(findName.Text.ToLower()) ||
+                                    _.SUM_REESTR_PP!.ToString().Contains(findName.Text.ToLower()) ||
+                                    _.SUM_REESTR_PP!.ToString().Contains(findName.Text.ToLower()) ||
+                                    _.NOM_LINE!.ToString().Contains(findName.Text.ToLower()) 
+                                    ).ToList();
             peoplesGrid.ItemsSource = s;
         }
     }
